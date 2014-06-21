@@ -1,2 +1,5 @@
 1403322247817	Rename package 'com.raingxm.screencast'
 1403325441443	Delete element
+1403325871749	Rename type 'SavingsAccount'
+1403336263259	Rename field 'balance'
+1403336930044	Rename local variable 'account'

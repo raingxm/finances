@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="_TestSomething" project="ScreenCast" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.raingxm.screencast._TestSomething" time="0.001">
-    <testcase name="nothing" classname="com.raingxm.screencast._TestSomething" time="0.001"/>
-  </testsuite>
-</testrun>

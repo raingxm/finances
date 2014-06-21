@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="_SavingsAccountTest" project="finances" tests="3" started="3" failures="0" errors="0" ignored="0">
-  <testsuite name="com.raingxm.finances._SavingsAccountTest" time="0.001">
-    <testcase name="depositAndWithdrawal" classname="com.raingxm.finances._SavingsAccountTest" time="0.0"/>
-    <testcase name="nextYear" classname="com.raingxm.finances._SavingsAccountTest" time="0.001"/>
-    <testcase name="negativeBalanceIsJustFine" classname="com.raingxm.finances._SavingsAccountTest" time="0.0"/>
-  </testsuite>
-</testrun>

@@ -1,0 +1,27 @@
+package com.raingxm.finances;
+
+import static org.junit.Assert.*;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+public class _SavingsAccountYearTest {
+	
+	@Test
+	public void startingBalance(){
+		SavingsAccountYear account = new SavingsAccountYear(10000,10);
+		assertEquals(10000, account.startingBalance());
+	}
+	
+	@Test
+	public void endingBaqlance() {
+		SavingsAccountYear account = new SavingsAccountYear(10000,10);
+		assertEquals(11000, account.endBalance());
+	}
+	
+	@Test
+	public void nextYearStartingBalanceShouldEqualThisYearsEndingBalance() {
+		SavingsAccountYear account = new SavingsAccountYear(10000,10);
+		assertEquals(account.endBalance(), account.nextYear().startingBalance());
+	}	
+}
