@@ -1,0 +1,14 @@
+package com.raingxm.screencast;
+
+public class SavingsAccount {
+
+	public void deposit(int i) {
+		return null;
+	}
+
+	public int balance() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

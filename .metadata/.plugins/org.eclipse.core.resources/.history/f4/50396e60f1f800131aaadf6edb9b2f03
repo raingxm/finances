@@ -1,0 +1,15 @@
+package com.raingxm.screencast;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class _SavingsAccountTest {
+
+	@Test
+	public void nothing() {
+		SavingsAccount account = new SavingsAccount();
+		account.desipote(100);
+	}
+
+}
