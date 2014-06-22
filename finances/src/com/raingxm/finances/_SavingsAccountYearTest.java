@@ -8,26 +8,50 @@ import org.junit.Test;
 public class _SavingsAccountYearTest {
 	
 	@Test
-	public void startingBalance(){
-		SavingsAccountYear account = new SavingsAccountYear(10000,10);
-		assertEquals(10000, account.startingBalance());
+	public void startingBalanceMatchesConstructor() {
+		assertEquals(10000, newAccount().startingBalance());
 	}
 	
 	@Test
-	public void endingBaqlance() {
-		SavingsAccountYear account = new SavingsAccountYear(10000,10);
-		assertEquals(11000, account.endBalance());
+	public void interestRateMatchesConstructor() {
+		assertEquals(10, newAccount().interestRate());
 	}
 	
 	@Test
-	public void nextYearStartingBalanceShouldEqualThisYearsEndingBalance() {
-		SavingsAccountYear nextYear = new SavingsAccountYear(10000,10);
-		assertEquals(nextYear.endBalance(), nextYear.nextYear().startingBalance());
+	public void endingBalanceAppliesInteresRate() {
+		assertEquals(11000, newAccount().endingBalance());
+	}
+	
+	@Test
+	public void nextYearStartingBalanceEqualsThisYearsEndingBalance() {
+		SavingsAccountYear nextYear = newAccount();
+		assertEquals(nextYear.endingBalance(), nextYear.nextYear().startingBalance());
 	}	
 	
 	@Test
-	public void nextYearsInterestRateEqualThisYearsInterestRate() {
-		SavingsAccountYear thisYear = new SavingsAccountYear(10000,10);
+	public void nextYearsInterestRateEqualsThisYearsInterestRate() {
+		SavingsAccountYear thisYear = newAccount();
 		assertEquals(thisYear.interestRate(), thisYear.nextYear().interestRate());
+	}
+	
+	@Test
+	public void withdrawingFundsOccursAtTheBeginningOfTheYear() {
+		SavingsAccountYear year = new SavingsAccountYear(10000, 10);
+		year.withdraw(1000);
+		assertEquals(9900, year.endingBalance());
+	}
+	
+	@Test
+	public void withdrawingMoreThanPrincipalIncursCapitalGainsTax() {
+		SavingsAccountYear year = new SavingsAccountYear(10000, 7000, 10);
+		year.withdraw(3000);
+		assertEquals(7700, year.endingBalance());
+		year.withdraw(5000);
+		assertEquals(2000 + 200 - 1250, year.endingBalance());
+	}
+	
+	private SavingsAccountYear newAccount() {
+		SavingsAccountYear account = new SavingsAccountYear(10000,10);
+		return account;
 	}
 }
