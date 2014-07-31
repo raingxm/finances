@@ -1,28 +1,17 @@
 package com.raingxm.finances;
 
-
-public class TaxRate {
+public class InterestRate {
 	
 	private double rate;
 	
-	public TaxRate(double rateAsPercentage) {
+	public InterestRate(int rateAsPercentage) {
 		this.rate = rateAsPercentage / 100.0;
 	}
 
-	public int simpleTaxFor(int amount) {
+	public int interestOn(int amount) {
 		return (int)(rate * amount);
 	}
-
-	public int compoundTaxFor(int amount) {
-
-		return (int)((amount / (1 - rate)) - amount);
-	}
-
-	@Override
-	public String toString() {
-		return (rate * 100) + "%";
-	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,10 +30,16 @@ public class TaxRate {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TaxRate other = (TaxRate) obj;
+		InterestRate other = (InterestRate) obj;
 		if (Double.doubleToLongBits(rate) != Double
 				.doubleToLongBits(other.rate))
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return (rate * 100) + "%";
+	}
+
 }
