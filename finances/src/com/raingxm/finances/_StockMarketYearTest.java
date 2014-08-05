@@ -8,8 +8,8 @@ import org.junit.Test;
 public class _StockMarketYearTest {
 	
 	private static final InterestRate INTEREST_RATE = new InterestRate(10);
-	private static final int STARTING_PRINCIPAL = 3000;
 	private static final int STARTING_BALANCE = 10000;
+	private static final Dollars STARTING_PRINCIPAL = new Dollars(3000);
 	private static final TaxRate CAPITAL_GAINS_TAX_RATE = new TaxRate(25);
 
 	@Test
@@ -44,11 +44,11 @@ public class _StockMarketYearTest {
 	public void endingPrincipal() {
 		StockMarketYear year = newYear();
 		year.withdraw(1000);
-		assertEquals("ending principal consider withdrawals", 2000, year.endingPrincipal());
+		assertEquals("ending principal consider withdrawals", new Dollars(2000), year.endingPrincipal());
 		year.withdraw(500);
-		assertEquals("ending principal consider totals multiple withdrawals", 1500, year.endingPrincipal());
+		assertEquals("ending principal consider totals multiple withdrawals", new Dollars(1500), year.endingPrincipal());
 		year.withdraw(3000);
-		assertEquals("ending principal never goes below zero", 0, year.endingPrincipal());
+		assertEquals("ending principal never goes below zero", new Dollars(0), year.endingPrincipal());
 	}
 	
 	@Test
