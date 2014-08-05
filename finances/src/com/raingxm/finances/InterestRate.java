@@ -8,10 +8,15 @@ public class InterestRate {
 		this.rate = rateAsPercentage / 100.0;
 	}
 
-	public int interestOn(int amount) {
-		return (int)(rate * amount);
+	public Dollars interestOn(Dollars amount) {
+		return new Dollars((int)(amount.toInt() * rate));
 	}
-	
+
+	@Override
+	public String toString() {
+		return (rate * 100) + "%";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -36,10 +41,4 @@ public class InterestRate {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return (rate * 100) + "%";
-	}
-
 }

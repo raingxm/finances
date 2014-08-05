@@ -8,7 +8,7 @@ public class Dollars {
 		this.amount = amount;
 	}
 	
-	public int amount() {
+	public int toInt() {
 		return this.amount;
 	}
 

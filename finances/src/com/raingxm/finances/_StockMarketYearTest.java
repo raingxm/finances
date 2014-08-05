@@ -33,11 +33,11 @@ public class _StockMarketYearTest {
 	@Test
 	public void interestEarned() {
 		StockMarketYear year = newYear();
-		assertEquals("basic interest earned", 1000, year.interestEarned());
+		assertEquals("basic interest earned", new Dollars(1000), year.interestEarned());
 		year.withdraw(new Dollars(2000));
-		assertEquals("withdrawals don't earn interest", 800, year.interestEarned());
+		assertEquals("withdrawals don't earn interest", new Dollars(800), year.interestEarned());
 		year.withdraw(new Dollars(2000));
-		assertEquals("capital gains tax withdrawals don't earn interest", 566, year.interestEarned());
+		assertEquals("capital gains tax withdrawals don't earn interest", new Dollars(566), year.interestEarned());
 	}
 	
 	@Test
