@@ -1,3 +1,17 @@
+'year' concept should be object?
+fail fast in StockMarketTableModel.getValueAt() default case
+Polish UI look & feel
+
+---
+
 Assert on TaxRate -- need to enforce legal values
 
 Desk check - spreadsheet results compared to StockMarketYear results
+
+
+---
+UI thingies to investigate further:
+
+Desktop
+- Swing (MigLayout? JGoodies FormLayout? Macify?)
+- SwiXml (layer on top of Swing)
