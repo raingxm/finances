@@ -8,7 +8,8 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Application extends JFrame {
-	
+	private static final long serialVersionUID = 1L;
+
 	public Application() {
 		this.setSize(1000, 400);
 		this.setLocation(400, 300);
@@ -18,10 +19,8 @@ public class Application extends JFrame {
 	}
 
 	private JScrollPane table() {
-		String[] titles = {"Year", "Starting Balance", "Starting Principal", "Withdrawals", "Appreciation", "Deposits", "Ending Balance"};
-		DefaultTableModel model = new DefaultTableModel(titles, 0);
+		StockMarketTableModel model = new StockMarketTableModel();
 		JTable table = new JTable(model);
-		model.addRow(new Integer[]{1, 2, 3, 4, 5, 6, 7});
 		return new JScrollPane(table);
 	}
 	
