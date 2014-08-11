@@ -48,12 +48,12 @@ public class StockMarketYear {
 		return totalWithdrawals.add(capitalGainsTaxIncurred());
 	}
 	
-	public Dollars interestEarned() {
+	public Dollars appreciation() {
 		return interestRate.interestOn(startingBalance.substract(totalWithdrawn()));
 	}
 
 	public Dollars endingBalance() {
-		return startingBalance.substract(totalWithdrawn()).add(interestEarned());
+		return startingBalance.substract(totalWithdrawn()).add(appreciation());
 	}
 
 	public Dollars endingPrincipal() {
