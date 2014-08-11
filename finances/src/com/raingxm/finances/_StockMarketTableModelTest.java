@@ -26,9 +26,6 @@ public class _StockMarketTableModelTest {
 		assertEquals("Starting Principal", model.getColumnName(2));
 	}
 
-	private static final String[] COLUMN_TITLES = { "Year", "Starting Balance","Starting Principal", 
-		"Withdrawals", "Appreciation", "Deposits", "Ending Balance" };
-	
 	@Test
 	public void oneRow() {
 		assertEquals(STARTING_YEAR, model.getValueAt(0, 0));
@@ -44,8 +41,8 @@ public class _StockMarketTableModelTest {
 		assertEquals(41, model.getRowCount());
 		assertEquals(STARTING_YEAR, model.getValueAt(0, 0));
 		assertEquals(STARTING_BALANCE, model.getValueAt(0, 1));
-		assertEquals(ENDING_YEAR, model.getValueAt(40, 0));
 		assertEquals(new Dollars(11000), model.getValueAt(1, 1));
+		assertEquals(ENDING_YEAR, model.getValueAt(40, 0));
 	}
 
 }
