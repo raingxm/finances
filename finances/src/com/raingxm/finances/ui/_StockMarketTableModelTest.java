@@ -1,9 +1,15 @@
-package com.raingxm.finances;
+package com.raingxm.finances.ui;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.raingxm.finances.domain.Dollars;
+import com.raingxm.finances.domain.InterestRate;
+import com.raingxm.finances.domain.StockMarket;
+import com.raingxm.finances.domain.TaxRate;
+import com.raingxm.finances.domain.Year;
 
 public class _StockMarketTableModelTest {
 
@@ -29,7 +35,7 @@ public class _StockMarketTableModelTest {
 
 	@Test
 	public void oneRow() {
-		assertEquals("year", STARTING_YEAR, model.getValueAt(0, 0));
+		assertEquals("year", new Year(STARTING_YEAR), model.getValueAt(0, 0));
 		assertEquals("starting balance", STARTING_BALANCE,
 				model.getValueAt(0, 1));
 		assertEquals("starting principal", STARTING_PRINCIPAL,
@@ -43,10 +49,10 @@ public class _StockMarketTableModelTest {
 	@Test
 	public void multipleRows() {
 		assertEquals(41, model.getRowCount());
-		assertEquals(STARTING_YEAR, model.getValueAt(0, 0));
+		assertEquals(new Year(STARTING_YEAR), model.getValueAt(0, 0));
 		assertEquals(STARTING_BALANCE, model.getValueAt(0, 1));
 		assertEquals(new Dollars(11000), model.getValueAt(1, 1));
-		assertEquals(ENDING_YEAR, model.getValueAt(40, 0));
+		assertEquals(new Year(ENDING_YEAR), model.getValueAt(40, 0));
 	}
 
 }

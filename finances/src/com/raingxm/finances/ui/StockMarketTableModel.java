@@ -1,6 +1,9 @@
-package com.raingxm.finances;
+package com.raingxm.finances.ui;
 
 import javax.swing.table.AbstractTableModel;
+
+import com.raingxm.finances.domain.StockMarket;
+import com.raingxm.finances.domain.StockMarketYear;
 
 public class StockMarketTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
@@ -30,19 +33,20 @@ public class StockMarketTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
+		StockMarketYear currentYear = market.getYearOffset(rowIndex);
 		switch (columnIndex) {
 		case 0:
-			return market.getStartingYear() + rowIndex;
+			return currentYear.year();
 		case 1:
-			return market.getYear(rowIndex).startingBalance();
+			return currentYear.startingBalance();
 		case 2:
-			return market.getYear(rowIndex).startingPrincipal();
+			return currentYear.startingPrincipal();
 		case 3:
-			return market.getYear(rowIndex).totalWithdrawn();
+			return currentYear.totalWithdrawn();
 		case 4:
-			return market.getYear(rowIndex).appreciation();
+			return currentYear.appreciation();
 		case 5:
-			return market.getYear(rowIndex).endingBalance();
+			return currentYear.endingBalance();
 		default:
 			return "";
 		}

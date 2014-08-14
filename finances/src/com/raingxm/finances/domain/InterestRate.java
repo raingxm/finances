@@ -1,4 +1,4 @@
-package com.raingxm.finances;
+package com.raingxm.finances.domain;
 
 public class InterestRate {
 	

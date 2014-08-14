@@ -1,10 +1,15 @@
-package com.raingxm.finances;
+package com.raingxm.finances.ui;
 
 import java.awt.Container;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.raingxm.finances.domain.Dollars;
+import com.raingxm.finances.domain.InterestRate;
+import com.raingxm.finances.domain.StockMarket;
+import com.raingxm.finances.domain.TaxRate;
 
 
 public class Application extends JFrame {

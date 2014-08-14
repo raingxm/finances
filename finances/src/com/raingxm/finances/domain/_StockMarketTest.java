@@ -1,4 +1,4 @@
-package com.raingxm.finances;
+package com.raingxm.finances.domain;
 
 import static org.junit.Assert.*;
 
@@ -17,8 +17,9 @@ public class _StockMarketTest {
 	public void stockMarketContainsMultipleYears() {
 		StockMarket account = new StockMarket(STARTING_YEAR, ENDING_YEAR, STARTING_BALANCE, STARTING_PRICIPAL, INTEREST_RATE, CAPITAL_GAINS_RATE);
 		assertEquals("# of years", 41, account.numberOfYears());
-		assertEquals(STARTING_BALANCE, account.getYear(0).startingBalance());				
-		assertEquals(new Dollars(11000), account.getYear(1).startingBalance());
-		assertEquals(new Dollars(12100), account.getYear(2).startingBalance());
+		assertEquals(STARTING_BALANCE, account.getYearOffset(0).startingBalance());				
+		assertEquals(new Dollars(11000), account.getYearOffset(1).startingBalance());
+		assertEquals(new Dollars(12100), account.getYearOffset(2).startingBalance());
+		assertEquals(new Year(2050), account.getYearOffset(40).year());
 	}
 }

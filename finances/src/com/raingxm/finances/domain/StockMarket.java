@@ -1,4 +1,4 @@
-package com.raingxm.finances;
+package com.raingxm.finances.domain;
 
 public class StockMarket {
 
@@ -9,10 +9,6 @@ public class StockMarket {
 	private Dollars startingPricipal;
 	private InterestRate interestRate;
 	private TaxRate capitalGainsRate;
-	
-	public int getStartingYear() {
-		return startingYear;
-	}
 
 	public StockMarket(int startingYear, int endingYear,
 			Dollars startingBalance, Dollars startingPrincipal,
@@ -27,14 +23,14 @@ public class StockMarket {
 			Dollars startingPrincipal, InterestRate interestRate,
 			TaxRate capitalGainsTaxRate) {
 		this.years = new StockMarketYear[numberOfYears()];
-		years[0] = new StockMarketYear(startingYear, startingBalance, startingPrincipal,
+		years[0] = new StockMarketYear(new Year(startingYear), startingBalance, startingPrincipal,
 				interestRate, capitalGainsTaxRate);
 		for (int i = 1; i < numberOfYears(); i++) {
 			years[i] = years[i - 1].nextYear();
 		}
 	}
 
-	public StockMarketYear getYear(int offset) {
+	public StockMarketYear getYearOffset(int offset) {
 		return years[offset];
 	}
 
