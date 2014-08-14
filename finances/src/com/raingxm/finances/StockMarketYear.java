@@ -2,18 +2,24 @@ package com.raingxm.finances;
 
 public class StockMarketYear {
 
+	private int year;
 	private Dollars startingBalance;
 	private Dollars startingPrincipal;
 	private InterestRate interestRate;
 	private TaxRate capitalGainsTaxRate;
 	private Dollars totalWithdrawals;
 	
-	public StockMarketYear(Dollars startingBalance,Dollars startingPrincipal, InterestRate interestRate, TaxRate capitalGainsTaxRate) {
+	public StockMarketYear(int year, Dollars startingBalance,Dollars startingPrincipal, InterestRate interestRate, TaxRate capitalGainsTaxRate) {
+		this.year = year;
 		this.startingBalance = startingBalance;
 		this.startingPrincipal  = startingPrincipal;
 		this.interestRate = interestRate;
 		this.capitalGainsTaxRate = capitalGainsTaxRate;
 		this.totalWithdrawals = new Dollars(0);
+	}
+	
+	public int year() {
+		return year;
 	}
 	
 	public Dollars startingBalance() {
@@ -61,7 +67,7 @@ public class StockMarketYear {
 	}
 
 	public StockMarketYear nextYear() {
-		return new StockMarketYear(this.endingBalance(), this.endingPrincipal(), this.interestRate(), this.capitalGainsTaxRate());
+		return new StockMarketYear(this.year() + 1, this.endingBalance(), this.endingPrincipal(), this.interestRate(), this.capitalGainsTaxRate());
 	}
 
 }

@@ -4,25 +4,13 @@ import javax.swing.table.AbstractTableModel;
 
 public class StockMarketTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
-	private static final String[] COLUMN_TITLES = { "Year", "Starting Balance","Starting Principal", 
-					"Withdrawals", "Appreciation", "Ending Balance" };
+	private static final String[] COLUMN_TITLES = { "Year", "Starting Balance",
+			"Starting Principal", "Withdrawals", "Appreciation",
+			"Ending Balance" };
+	private StockMarket market;
 	
-	private int startingYear;
-	private int endingYear;
-	private StockMarketYear[] years;
-
-	public StockMarketTableModel(int startingYear, int endingYear, Dollars startingBalance, Dollars startingPrincipal, InterestRate interestRate, TaxRate capitalGainsTaxRate) {
-		this.startingYear = startingYear;
-		this.endingYear = endingYear;
-		populateYears(startingBalance, startingPrincipal, interestRate, capitalGainsTaxRate);
-	}
-
-	private void populateYears(Dollars startingBalance, Dollars startingPrincipal, InterestRate interestRate, TaxRate capitalGainsTaxRate) {
-		this.years = new StockMarketYear[getRowCount()];
-		years[0] = new StockMarketYear(startingBalance, startingPrincipal, interestRate, capitalGainsTaxRate);
-		for(int i = 1; i < getRowCount(); i++) {
-			years[i] = years[i - 1].nextYear();
-		}
+	public StockMarketTableModel(StockMarket market) {
+		this.market = market;
 	}
 
 	@Override
@@ -37,20 +25,26 @@ public class StockMarketTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return endingYear - startingYear + 1;
+		return market.numberOfYears();
 	}
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		StockMarketYear currentYear = years[rowIndex];
 		switch (columnIndex) {
-			case 0: return startingYear + rowIndex;
-			case 1: return currentYear.startingBalance();
-			case 2: return currentYear.startingPrincipal(); 
-			case 3: return currentYear.totalWithdrawn();
-			case 4: return currentYear.appreciation();
-			case 5: return currentYear.endingBalance();
-			default: return "";
+		case 0:
+			return market.getStartingYear() + rowIndex;
+		case 1:
+			return market.getYear(rowIndex).startingBalance();
+		case 2:
+			return market.getYear(rowIndex).startingPrincipal();
+		case 3:
+			return market.getYear(rowIndex).totalWithdrawn();
+		case 4:
+			return market.getYear(rowIndex).appreciation();
+		case 5:
+			return market.getYear(rowIndex).endingBalance();
+		default:
+			return "";
 		}
 	}
 

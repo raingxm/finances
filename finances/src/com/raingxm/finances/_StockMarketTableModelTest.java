@@ -15,7 +15,8 @@ public class _StockMarketTableModelTest {
 
 	@Before
 	public void setup() {
-		model = new StockMarketTableModel(STARTING_YEAR, ENDING_YEAR, STARTING_BALANCE, STARTING_PRINCIPAL, new InterestRate(10), new TaxRate(25));
+		model = new StockMarketTableModel(new StockMarket(STARTING_YEAR, ENDING_YEAR, STARTING_BALANCE,
+						STARTING_PRINCIPAL, new InterestRate(10), new TaxRate(25)));
 	}
 
 	@Test
@@ -29,13 +30,16 @@ public class _StockMarketTableModelTest {
 	@Test
 	public void oneRow() {
 		assertEquals("year", STARTING_YEAR, model.getValueAt(0, 0));
-		assertEquals("starting balance", STARTING_BALANCE, model.getValueAt(0, 1));
-		assertEquals("starting principal", STARTING_PRINCIPAL, model.getValueAt(0, 2));
+		assertEquals("starting balance", STARTING_BALANCE,
+				model.getValueAt(0, 1));
+		assertEquals("starting principal", STARTING_PRINCIPAL,
+				model.getValueAt(0, 2));
 		assertEquals("withdrawals", new Dollars(0), model.getValueAt(0, 3));
 		assertEquals("appreciation", new Dollars(1000), model.getValueAt(0, 4));
-		assertEquals("ending balance", new Dollars(11000), model.getValueAt(0, 5));
+		assertEquals("ending balance", new Dollars(11000),
+				model.getValueAt(0, 5));
 	}
-	
+
 	@Test
 	public void multipleRows() {
 		assertEquals(41, model.getRowCount());

@@ -4,29 +4,38 @@ public class StockMarket {
 
 	private int startingYear;
 	private int endingYear;
+	private StockMarketYear[] years;
 	private Dollars startingBalance;
 	private Dollars startingPricipal;
 	private InterestRate interestRate;
 	private TaxRate capitalGainsRate;
+	
+	public int getStartingYear() {
+		return startingYear;
+	}
 
 	public StockMarket(int startingYear, int endingYear,
-			Dollars startingBalance, Dollars startingPricipal,
-			InterestRate interestRate, TaxRate capitalGainsRate) {
+			Dollars startingBalance, Dollars startingPrincipal,
+			InterestRate interestRate, TaxRate capitalGainsTaxRate) {
 		this.startingYear = startingYear;
 		this.endingYear = endingYear;
-		this.startingBalance = startingBalance;
-		this.startingPricipal = startingPricipal;
-		this.interestRate = interestRate;
-		this.capitalGainsRate = capitalGainsRate;
+		populateYears(startingBalance, startingPrincipal, interestRate,
+				capitalGainsTaxRate);
+	}
 
+	private void populateYears(Dollars startingBalance,
+			Dollars startingPrincipal, InterestRate interestRate,
+			TaxRate capitalGainsTaxRate) {
+		this.years = new StockMarketYear[numberOfYears()];
+		years[0] = new StockMarketYear(startingYear, startingBalance, startingPrincipal,
+				interestRate, capitalGainsTaxRate);
+		for (int i = 1; i < numberOfYears(); i++) {
+			years[i] = years[i - 1].nextYear();
+		}
 	}
 
 	public StockMarketYear getYear(int offset) {
-		StockMarketYear year = new StockMarketYear(startingBalance, startingPricipal, interestRate, capitalGainsRate);
-		for(int i = 0; i < offset; i++) {
-			year = year.nextYear();
-		}
-		return year;
+		return years[offset];
 	}
 
 	public int numberOfYears() {
