@@ -12,12 +12,8 @@ public class _RequireTest {
 			Require.that(false, "some message");
 			fail("excepted exception");
 		} catch (RequireException e) {
-			
+			assertEquals("some message", e.getMessage());
 		}
 	}
 }
 
-class RequireException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
-	
-}

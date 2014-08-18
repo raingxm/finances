@@ -1,5 +1,7 @@
 package com.raingxm.finances.domain;
 
+import com.raingxm.finances.util.Require;
+
 public class StockMarket {
 
 	private Year startingYear;
@@ -31,6 +33,7 @@ public class StockMarket {
 	}
 
 	public StockMarketYear getYearOffset(int offset) {
+		Require.that(offset >= 0 && offset < numberOfYears(), "Offset needs to be between 0 and " + (numberOfYears() - 1) +"; was " + offset);
 		return years[offset];
 	}
 

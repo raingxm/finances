@@ -1,10 +1,13 @@
 package com.raingxm.finances.domain;
 
+import com.raingxm.finances.util.Require;
+
 public class InterestRate {
 	
 	private double rate;
 	
 	public InterestRate(int rateAsPercentage) {
+		Require.that(rateAsPercentage > 0, "interest rate must be positive (and not zero); was " + rateAsPercentage);
 		this.rate = rateAsPercentage / 100.0;
 	}
 
