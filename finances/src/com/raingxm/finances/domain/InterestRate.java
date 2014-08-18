@@ -4,20 +4,20 @@ import com.raingxm.finances.util.Require;
 
 public class InterestRate {
 	
-	private double rate;
+	private double rateAsPercentage;
 	
 	public InterestRate(int rateAsPercentage) {
 		Require.that(rateAsPercentage > 0, "interest rate must be positive (and not zero); was " + rateAsPercentage);
-		this.rate = rateAsPercentage / 100.0;
+		this.rateAsPercentage = rateAsPercentage;
 	}
 
 	public Dollars interestOn(Dollars amount) {
-		return new Dollars((int)(amount.toInt() * rate));
+		return amount.percentage(rateAsPercentage);
 	}
 
 	@Override
 	public String toString() {
-		return (rate * 100) + "%";
+		return rateAsPercentage + "%";
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class InterestRate {
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(rate);
+		temp = Double.doubleToLongBits(rateAsPercentage);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -39,8 +39,8 @@ public class InterestRate {
 		if (getClass() != obj.getClass())
 			return false;
 		InterestRate other = (InterestRate) obj;
-		if (Double.doubleToLongBits(rate) != Double
-				.doubleToLongBits(other.rate))
+		if (Double.doubleToLongBits(rateAsPercentage) != Double
+				.doubleToLongBits(other.rateAsPercentage))
 			return false;
 		return true;
 	}

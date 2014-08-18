@@ -1,4 +1,9 @@
+Get rid of Dollars.toInt() entirely, it's a source of error
+Convert Dollars to have pennies (use doubles?)
+
 cumulative error due to truncating doubles into integers --fix it, it's too large
+- interest rate
+- tax rate
 
 Polish UI look & feel
 

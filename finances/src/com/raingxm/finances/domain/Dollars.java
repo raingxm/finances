@@ -25,6 +25,10 @@ public class Dollars {
 		return new Dollars(Math.max(0, reuslt));
 	}
 
+	public Dollars percentage(double percent) {
+		return new Dollars((int)(this.amount * percent / 100));
+	}
+	
 	@Override
 	public String toString() {
 		return "$" + amount;
