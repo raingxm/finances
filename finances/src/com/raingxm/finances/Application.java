@@ -1,4 +1,4 @@
-package com.raingxm.finances.ui;
+package com.raingxm.finances;
 
 import java.awt.Container;
 import javax.swing.JFrame;
@@ -10,6 +10,8 @@ import com.raingxm.finances.domain.Dollars;
 import com.raingxm.finances.domain.InterestRate;
 import com.raingxm.finances.domain.StockMarket;
 import com.raingxm.finances.domain.TaxRate;
+import com.raingxm.finances.domain.Year;
+import com.raingxm.finances.ui.StockMarketTableModel;
 
 
 public class Application extends JFrame {
@@ -24,10 +26,19 @@ public class Application extends JFrame {
 	}
 
 	private JScrollPane table() {
-		StockMarket market = new StockMarket(2010, 2050, new Dollars(10000), new Dollars(7000), new InterestRate(10), new TaxRate(25));
-		StockMarketTableModel model = new StockMarketTableModel(market);
+		StockMarketTableModel model = new StockMarketTableModel(stockMarket());
 		JTable table = new JTable(model);
 		return new JScrollPane(table);
+	}
+
+	private StockMarket stockMarket() {
+		Year startingYear = new Year(2010);
+		Year endingYear = new Year(2050);
+		Dollars startingBalance = new Dollars(10000);
+		Dollars startingPrincipal = new Dollars(7000);
+		InterestRate interestRate = new InterestRate(10);
+		TaxRate capitalGainsTaxRate = new TaxRate(25);
+		return new StockMarket(startingYear, endingYear, startingBalance, startingPrincipal, interestRate, capitalGainsTaxRate);
 	}
 	
 	public static void main(String[] args) {
