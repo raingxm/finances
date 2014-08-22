@@ -30,10 +30,18 @@ public class _DollarsTest {
 	}
 
 	@Test
-	public void equalsIgnorePennies() {
-		assertEquals(new Dollars(10), new Dollars(10.21));
+	public void equalsIgnoresPennies() {
+		assertTrue("should round down", new Dollars(10).equals(new Dollars(10.21)));
+		assertTrue("should round up", new Dollars(10).equals(new Dollars(9.90)));
+		assertTrue("should round up when we have exactly 50 cents", new Dollars(12).equals(new Dollars(11.5)));
 	}
 	
+	@Test
+	public void toStringIgnoresPennies() {
+		assertEquals("$10", new Dollars(10.21).toString());
+		assertEquals("$10", new Dollars(9.90).toString());
+		assertEquals("should round up when we have exactly 50 cents", "$12", new Dollars(11.5).toString());
+	}
 	@Test
 	public void valueObject() {
 		Dollars dollars1a = new Dollars(10);

@@ -2,12 +2,16 @@ package com.raingxm.finances.domain;
 
 public class Dollars {
 
-	private int amount;
+	private double amount;
 
 	public Dollars(int amount) {
 		this.amount = amount;
 	}
-
+	
+	public Dollars(double amount) {
+		this.amount = amount;
+	}
+	
 	public Dollars add(Dollars dollars) {
 		return new Dollars(this.amount + dollars.amount);
 	}
@@ -17,38 +21,36 @@ public class Dollars {
 	}
 
 	public Dollars substractToZero(Dollars dollars) {
-		int reuslt = this.amount - dollars.amount;
+		double reuslt = this.amount - dollars.amount;
 		return new Dollars(Math.max(0, reuslt));
 	}
 
 	public Dollars percentage(double percent) {
 		return new Dollars((int)(this.amount * percent / 100));
 	}
-	
+
+	private long roundOffPennies() {
+		return Math.round(this.amount);
+	}
+
 	@Override
 	public String toString() {
-		return "$" + amount;
+		return "$" + roundOffPennies();
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + amount;
+		long temp;
+		temp = Double.doubleToLongBits(amount);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Dollars other = (Dollars) obj;
-		if (amount != other.amount)
-			return false;
-		return true;
+		Dollars that = (Dollars)obj;
+		return roundOffPennies() == that.roundOffPennies();
 	}
 }
