@@ -26,7 +26,6 @@ public class _DollarsTest {
 	@Test
 	public void percentage() {
 		assertEquals(new Dollars(20), new Dollars(100).percentage(20));
-		assertEquals(new Dollars(4), new Dollars(9).percentage(50));
 	}
 
 	@Test
@@ -37,11 +36,19 @@ public class _DollarsTest {
 	}
 	
 	@Test
+	public void hashcodeIgnoresPennies() {
+		assertTrue("should round down", new Dollars(10).hashCode() == new Dollars(10.21).hashCode());
+		assertTrue("should round up",new Dollars(10).hashCode() == new Dollars(9.90).hashCode());
+		assertTrue("should round up when we have exactly 50 cents", new Dollars(12).hashCode() == new Dollars(11.5).hashCode());
+	}
+
+	@Test
 	public void toStringIgnoresPennies() {
-		assertEquals("$10", new Dollars(10.21).toString());
-		assertEquals("$10", new Dollars(9.90).toString());
+		assertEquals("should round down", "$10", new Dollars(10.21).toString());
+		assertEquals("should round up", "$10", new Dollars(9.90).toString());
 		assertEquals("should round up when we have exactly 50 cents", "$12", new Dollars(11.5).toString());
 	}
+	
 	@Test
 	public void valueObject() {
 		Dollars dollars1a = new Dollars(10);

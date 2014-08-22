@@ -1,9 +1,5 @@
-Get rid of Dollars.toInt() entirely, it's a source of error
-Convert Dollars to have pennies (use doubles?)
-
-cumulative error due to truncating doubles into integers --fix it, it's too large
-- interest rate
-- tax rate
+Fix capital gains tax to work like spreadsheet
+Change language of StockMarketYear to reflect domain better ('buy' and 'sell' rather than 'deposit' and 'withdraw')
 
 Polish UI look & feel
 
@@ -13,3 +9,9 @@ UI thingies to investigate further:
 Desktop
 - Swing (MigLayout? JGoodies FormLayout? Macify?)
 - SwiXml (layer on top of Swing)
+
+
+---
+Long term:
+
+- More realistic abstraction for capital gains tax (in StockMarketYear)

@@ -26,7 +26,7 @@ public class Dollars {
 	}
 
 	public Dollars percentage(double percent) {
-		return new Dollars((int)(this.amount * percent / 100));
+		return new Dollars(this.amount * percent / 100);
 	}
 
 	private long roundOffPennies() {
@@ -40,12 +40,7 @@ public class Dollars {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(amount);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		return result;
+		return (int)roundOffPennies();
 	}
 
 	@Override

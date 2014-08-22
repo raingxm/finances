@@ -31,6 +31,14 @@ public class _StockMarketYearTest {
 		assertEquals("capital gains tax includes tax on withdrawals to cover capital gains", new Dollars(333), year.capitalGainsTaxIncurred());
 		assertEquals("total withdrawn includes capital gains tax", new Dollars(4333), year.totalWithdrawn());
 	}
+	@Test
+	public void capitalGainsTaxIsPaidFirst() {
+		StockMarketYear year = newYear();
+		
+		Dollars capitalGains = STARTING_BALANCE.substract(STARTING_PRINCIPAL);
+		year.withdraw(capitalGains);
+		assertEquals("pay tax on all withdrawals until all capital gains withdrawn", new Dollars(2333), year.capitalGainsTaxIncurred());
+	}
 
 	@Test
 	public void interestEarned() {
@@ -39,7 +47,7 @@ public class _StockMarketYearTest {
 		year.withdraw(new Dollars(2000));
 		assertEquals("withdrawals don't earn interest", new Dollars(800), year.appreciation());
 		year.withdraw(new Dollars(2000));
-		assertEquals("capital gains tax withdrawals don't earn interest", new Dollars(566), year.appreciation());
+		assertEquals("capital gains tax withdrawals don't earn interest", new Dollars(567), year.appreciation());
 	}
 	
 	@Test
