@@ -7,10 +7,6 @@ public class Dollars {
 	public Dollars(int amount) {
 		this.amount = amount;
 	}
-	
-	public int toInt() {
-		return this.amount;
-	}
 
 	public Dollars add(Dollars dollars) {
 		return new Dollars(this.amount + dollars.amount);
