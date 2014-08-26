@@ -12,11 +12,11 @@ public class Dollars {
 		this.amount = amount;
 	}
 	
-	public Dollars add(Dollars dollars) {
+	public Dollars plus(Dollars dollars) {
 		return new Dollars(this.amount + dollars.amount);
 	}
 
-	public Dollars substract(Dollars dollars) {
+	public Dollars minus(Dollars dollars) {
 		return new Dollars(this.amount - dollars.amount);
 	}
 
@@ -27,6 +27,10 @@ public class Dollars {
 
 	public Dollars percentage(double percent) {
 		return new Dollars(this.amount * percent / 100);
+	}
+
+	public Dollars minOfTwoValues(Dollars value2) {
+		return new Dollars(Math.min(this.amount, value2.amount));
 	}
 
 	private long roundOffPennies() {

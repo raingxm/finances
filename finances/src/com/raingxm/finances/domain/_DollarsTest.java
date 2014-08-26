@@ -8,17 +8,17 @@ public class _DollarsTest {
 	
 	@Test
 	public void addition() {
-		assertEquals(new Dollars(40), new Dollars(10).add(new Dollars(30)));
+		assertEquals(new Dollars(40), new Dollars(10).plus(new Dollars(30)));
 	}
 	
 	@Test
 	public void subtraction() {
-		assertEquals("positive result", new Dollars(20), new Dollars(50).substract(new Dollars(30)));
-		assertEquals("negative result", new Dollars(-60), new Dollars(40).substract(new Dollars(100)));
+		assertEquals("positive result", new Dollars(20), new Dollars(50).minus(new Dollars(30)));
+		assertEquals("negative result", new Dollars(-60), new Dollars(40).minus(new Dollars(100)));
 	}
 	
 	@Test
-	public void subtractToZero() {
+	public void minusToZero() {
 		assertEquals("positive result", new Dollars(20), new Dollars(50).substractToZero(new Dollars(30)));
 		assertEquals("no negative result--return zero instead", new Dollars(0), new Dollars(40).substractToZero(new Dollars(100)));
 	}
@@ -28,6 +28,14 @@ public class _DollarsTest {
 		assertEquals(new Dollars(20), new Dollars(100).percentage(20));
 	}
 
+	@Test
+	public void minOfTwoValues() {
+		Dollars value1 = new Dollars(20);
+		Dollars value2 = new Dollars(30);
+		assertEquals("value 1", new Dollars(20), value1.minOfTwoValues(value2));
+		assertEquals("value 2", new Dollars(20), value2.minOfTwoValues(value1));
+	}
+	
 	@Test
 	public void equalsIgnoresPennies() {
 		assertTrue("should round down", new Dollars(10).equals(new Dollars(10.21)));
