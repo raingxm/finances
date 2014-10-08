@@ -22,7 +22,7 @@ public class _StockMarketTableModelTest {
 	@Before
 	public void setup() {
 		model = new StockMarketTableModel(new StockMarket(STARTING_YEAR, ENDING_YEAR, STARTING_BALANCE,
-						STARTING_PRINCIPAL, new InterestRate(10), new TaxRate(25)));
+						STARTING_PRINCIPAL, new InterestRate(10), new TaxRate(25), new Dollars(0)));
 	}
 
 	@Test

@@ -11,12 +11,14 @@ public class StockMarket {
 	private Dollars startingPricipal;
 	private InterestRate interestRate;
 	private TaxRate capitalGainsRate;
+	private Dollars sellEveryYear;
 
 	public StockMarket(Year startingYear, Year endingYear,
 			Dollars startingBalance, Dollars startingPrincipal,
-			InterestRate interestRate, TaxRate capitalGainsTaxRate) {
+			InterestRate interestRate, TaxRate capitalGainsTaxRate, Dollars sellEveryYear) {
 		this.startingYear = startingYear;
 		this.endingYear = endingYear;
+		this.sellEveryYear = sellEveryYear;
 		populateYears(startingBalance, startingPrincipal, interestRate,
 				capitalGainsTaxRate);
 	}
@@ -27,8 +29,10 @@ public class StockMarket {
 		this.years = new StockMarketYear[numberOfYears()];
 		years[0] = new StockMarketYear(startingYear, startingBalance, startingPrincipal,
 				interestRate, capitalGainsTaxRate);
+		years[0].sell(sellEveryYear);
 		for (int i = 1; i < numberOfYears(); i++) {
 			years[i] = years[i - 1].nextYear();
+			years[i].sell(sellEveryYear);
 		}
 	}
 
